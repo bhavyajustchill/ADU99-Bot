@@ -9,7 +9,16 @@ module.exports = {
       .setTitle("🤖 Bot Help")
       .setDescription("Here are some things you can do with this bot:")
       .addFields(
-        { name: "/ping", value: "Replies with Pong! Used to check if the bot is online." },
+        {
+          name: "/ping",
+          value: "Replies with Pong! Used to check if the bot is online.",
+        },
+        { name: "/about", value: "Displays info about ADU 99" },
+        {
+          name: "/builds",
+          value:
+            "Shows some of the handpicked builds, which are mostly used by Squad of ADU 99",
+        },
         { name: "/help", value: "Displays this help message." }
       )
       .setFooter({ text: "Bot created by YourName" })
