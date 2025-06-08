@@ -1,0 +1,19 @@
+{
+  "name": "adu99-bot",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:commands": "node src/deploy-commands.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "BhavyaJustChill",
+  "license": "ISC",
+  "description": "Official BOT of ADU 99",
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0"
+  }
+}
+
