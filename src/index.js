@@ -2,6 +2,7 @@ const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { token } = require("./config/config");
 const fs = require("fs");
 const path = require("path");
+const express = require("express");
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -27,4 +28,21 @@ for (const file of eventFiles) {
   }
 }
 
+// Start bot
 client.login(token);
+
+// ===== Express keep-alive server =====
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("✅ Discord bot is alive and running.");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  const url = `http://localhost:${PORT}/`; // will be replaced by your hosting URL online
+  console.log("========================================");
+  console.log("🚀 Express keep-alive server started!");
+  console.log(`🔗 Use this URL in UptimeRobot: ${url}`);
+  console.log("========================================");
+});
