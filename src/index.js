@@ -47,7 +47,7 @@ async function ensureBotStarted() {
 }
 
 const app = express();
-app.use(express.json());
+// app.use(express.json());
 
 app.set("trust proxy", true);
 
@@ -56,18 +56,24 @@ app.get("/", async (req, res) => {
 
   try {
     const status = await ensureBotStarted();
-    return res.json({
-      message: "✅ Discord bot keep-alive endpoint.",
-      status: status,
-      uptimeRobotUrl: url,
-    });
+    return res.send(
+      [
+        "✅ Discord bot keep-alive endpoint.",
+        `🤖 Bot status: ${status}`,
+        `🔗 Use this URL in UptimeRobot: ${url}`,
+      ].join("\n")
+    );
   } catch (err) {
     console.error("Failed to ensure bot is running:", err);
-    return res.status(500).json({
-      message: "❌ Failed to start Discord bot.",
-      reason: err.message || err,
-      uptimeRobotUrl: url,
-    });
+    return res
+      .status(500)
+      .send(
+        [
+          "❌ Failed to start Discord bot.",
+          `Reason: ${err.message || err}`,
+          `🔗 Keep-alive URL (still valid): ${baseUrl}`,
+        ].join("\n")
+      );
   }
 });
 
